@@ -5,14 +5,21 @@ import { useEffect, useState } from 'react';
 export default function Background() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [targetPos, setTargetPos] = useState({ x: 0, y: 0 });
+  const [isClient, setIsClient] = useState(false);
 
-  // Random positions for light dots
-  const lightDots = Array.from({ length: 10 }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-    animationDelay: `${Math.random() * 3.5}s`,
-  }));
+  // Generate light dots only on client to avoid hydration mismatch
+  const [lightDots] = useState(() =>
+    Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 3.5}s`,
+    }))
+  );
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -54,8 +61,8 @@ export default function Background() {
       <div className="gradient-orb orb-blue" />
       <div className="gradient-orb orb-gold" />
 
-      {/* Layer 4: Pulsing Blue Lights */}
-      {lightDots.map((dot) => (
+      {/* Layer 4: Pulsing Blue Lights - Only render on client */}
+      {isClient && lightDots.map((dot) => (
         <div
           key={dot.id}
           className="light-dot"

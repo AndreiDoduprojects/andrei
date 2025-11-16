@@ -1,104 +1,216 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
+  const [showBackground, setShowBackground] = useState(false);
+
+  useMotionValueEvent(scrollY, 'change', (value) => {
+    if (value > 50) {
+      setShowBackground(true);
+    } else {
+      setShowBackground(false);
+    }
+  });
 
   return (
-    <nav className="glass fixed top-0 left-0 right-0 z-50" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-      <div className="container">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="text-xl font-bold gradient-text">
-            ANDREI DODU
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#about"
-              className="text-gray-400 hover:text-white transition-colors relative group"
+    <nav
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        animation: 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        opacity: 0,
+        padding: 'var(--spacing-md) 0',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <motion.div
+        className="relative"
+        animate={{
+          width: showBackground ? '90%' : '100%',
+          maxWidth: showBackground ? '1200px' : '1536px',
+        }}
+        transition={{
+          duration: 0.3,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        style={{
+          borderRadius: showBackground ? '12px' : '0px',
+        }}
+      >
+        <motion.div
+          className="glass relative"
+          animate={{
+            background: showBackground
+              ? 'rgba(0, 0, 0, 0.8)'
+              : 'rgba(0, 0, 0, 0.3)',
+            borderColor: showBackground
+              ? 'rgba(255, 255, 255, 0.12)'
+              : 'rgba(255, 255, 255, 0.05)',
+          }}
+          transition={{
+            duration: 0.3,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          style={{
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderRadius: showBackground ? '12px' : '0px',
+            borderTop: showBackground ? '1px solid' : 'none',
+            borderLeft: showBackground ? '1px solid' : 'none',
+            borderRight: showBackground ? '1px solid' : 'none',
+            borderBottom: '1px solid',
+            padding: `var(--component-padding-md) var(--component-padding-lg)`,
+            boxShadow: showBackground
+              ? '0 8px 32px rgba(0, 0, 0, 0.4)'
+              : 'none',
+          }}
+        >
+          <div className="flex items-center justify-center">
+            {/* Desktop Navigation - Centered */}
+            <div
+              className="hidden md:flex items-center"
+              style={{
+                gap: 'var(--gap-lg)',
+              }}
             >
-              About
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0369a1] to-[#fbbf24] group-hover:w-full transition-all duration-300" />
-            </a>
-            <a
-              href="#work"
-              className="text-gray-400 hover:text-white transition-colors relative group"
-            >
-              Work
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0369a1] to-[#fbbf24] group-hover:w-full transition-all duration-300" />
-            </a>
-            <a
-              href="#contact"
-              className="text-gray-400 hover:text-white transition-colors relative group"
-            >
-              Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0369a1] to-[#fbbf24] group-hover:w-full transition-all duration-300" />
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white p-2"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {mobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-800">
-            <div className="flex flex-col gap-4">
-              <a
-                href="#about"
-                className="text-gray-400 hover:text-white transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </a>
               <a
                 href="#work"
-                className="text-gray-400 hover:text-white transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-gray-500 hover:text-white cursor-pointer"
+                style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
                 Work
               </a>
               <a
+                href="#skills"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-gray-500 hover:text-white cursor-pointer"
+                style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+              >
+                Skills
+              </a>
+              <a
                 href="#contact"
-                className="text-gray-400 hover:text-white transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-gray-500 hover:text-white cursor-pointer"
+                style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
                 Contact
               </a>
             </div>
+
+            {/* Mobile Menu Button - Centered */}
+            <button
+              className="md:hidden text-white"
+              style={{
+                padding: 'var(--component-padding-sm)',
+              }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {mobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
-        )}
-      </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div
+              className="md:hidden border-t border-gray-800"
+              style={{
+                animation: 'slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                padding: `var(--component-padding-md) 0`,
+              }}
+            >
+              <div
+                className="flex flex-col"
+                style={{
+                  gap: 'var(--gap-sm)',
+                }}
+              >
+                <a
+                  href="#work"
+                  className="text-gray-400 hover:text-white"
+                  style={{
+                    padding: 'var(--component-padding-sm)',
+                    transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Work
+                </a>
+                <a
+                  href="#skills"
+                  className="text-gray-400 hover:text-white"
+                  style={{
+                    padding: 'var(--component-padding-sm)',
+                    transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Skills
+                </a>
+                <a
+                  href="#contact"
+                  className="text-gray-400 hover:text-white"
+                  style={{
+                    padding: 'var(--component-padding-sm)',
+                    transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </motion.div>
     </nav>
   );
 }

@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Cal Sans Font */
+@font-face {
+  font-family: 'Cal Sans';
+  src: url('/fonts/CalSans-SemiBold.woff2') format('woff2'),
+       url('/fonts/CalSans-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS Houdini @property for gradient animations */
 @property --shine-angle {
   syntax: '<angle>';
@@ -40,6 +50,56 @@
 
   /* Font family */
   --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+
+  /* ===================================
+     8px Spacing Grid System
+     Professional spacing scale based on 8px baseline
+     ================================= */
+
+  /* Base spacing scale (8px increments) */
+  --space-0: 0;
+  --space-1: 4px;     /* 0.5 * 8px - micro spacing */
+  --space-2: 8px;     /* 1 * 8px - minimum touch target padding */
+  --space-3: 12px;    /* 1.5 * 8px - tight spacing */
+  --space-4: 16px;    /* 2 * 8px - comfortable spacing */
+  --space-6: 24px;    /* 3 * 8px - medium spacing */
+  --space-8: 32px;    /* 4 * 8px - generous spacing */
+  --space-12: 48px;   /* 6 * 8px - large spacing */
+  --space-16: 64px;   /* 8 * 8px - extra large spacing */
+  --space-24: 96px;   /* 12 * 8px - section spacing */
+  --space-32: 128px;  /* 16 * 8px - hero spacing */
+
+  /* Semantic spacing aliases for common use cases */
+  --spacing-xs: var(--space-1);    /* 4px - micro elements */
+  --spacing-sm: var(--space-2);    /* 8px - small gaps */
+  --spacing-md: var(--space-4);    /* 16px - default spacing */
+  --spacing-lg: var(--space-6);    /* 24px - comfortable spacing */
+  --spacing-xl: var(--space-8);    /* 32px - generous spacing */
+  --spacing-2xl: var(--space-12);  /* 48px - large spacing */
+  --spacing-3xl: var(--space-16);  /* 64px - extra large spacing */
+
+  /* Section spacing - vertical rhythm for major layout sections */
+  --section-spacing-mobile: var(--space-16);   /* 64px for mobile */
+  --section-spacing-tablet: var(--space-24);   /* 96px for tablet */
+  --section-spacing-desktop: var(--space-32);  /* 128px for desktop */
+
+  /* Component spacing - for consistent component padding */
+  --component-padding-sm: var(--space-4);   /* 16px - compact components */
+  --component-padding-md: var(--space-6);   /* 24px - default components */
+  --component-padding-lg: var(--space-8);   /* 32px - spacious components */
+
+  /* Container spacing - horizontal padding at different breakpoints */
+  --container-padding-mobile: var(--space-6);    /* 24px on mobile */
+  --container-padding-tablet: var(--space-8);    /* 32px on tablet */
+  --container-padding-desktop: var(--space-16);  /* 64px on desktop */
+
+  /* Gap spacing - for flexbox/grid gaps */
+  --gap-xs: var(--space-1);   /* 4px */
+  --gap-sm: var(--space-2);   /* 8px */
+  --gap-md: var(--space-4);   /* 16px */
+  --gap-lg: var(--space-6);   /* 24px */
+  --gap-xl: var(--space-8);   /* 32px */
+  --gap-2xl: var(--space-12); /* 48px */
 }
 
 * {
@@ -63,23 +123,28 @@ body {
 }
 
 /* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cal Sans', var(--font-system);
+}
+
 h1 {
   font-size: 4.5rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -2px;
   line-height: 1.1;
 }
 
 h2 {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -1px;
   line-height: 1.2;
 }
 
 h3 {
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  letter-spacing: -0.5px;
   line-height: 1.4;
 }
 
@@ -171,6 +236,66 @@ p {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Static Diagonal Gradient Background - Fixed position */
+.diagonal-gradient-bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(3, 105, 161, 0.06) 0%,
+    rgba(251, 191, 36, 0.06) 50%,
+    rgba(3, 105, 161, 0.04) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.diagonal-gradient-layer {
+  display: none;
+}
+
+.diagonal-gradient-accent {
+  display: none;
+}
+
 /* Background layers */
 .background-container {
   position: fixed;
@@ -196,26 +321,74 @@ p {
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(60px);
   opacity: 0.15;
 }
 
+@media (min-width: 768px) {
+  .gradient-orb {
+    filter: blur(80px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gradient-orb {
+    filter: blur(100px);
+  }
+}
+
 .orb-blue {
-  width: 400px;
-  height: 400px;
+  width: 250px;
+  height: 250px;
   background: radial-gradient(circle, #0369a1, transparent);
-  top: -100px;
-  left: -100px;
+  top: -50px;
+  left: -50px;
   animation: float 15s ease-in-out infinite;
 }
 
+@media (min-width: 768px) {
+  .orb-blue {
+    width: 350px;
+    height: 350px;
+    top: -75px;
+    left: -75px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .orb-blue {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+  }
+}
+
 .orb-gold {
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 300px;
   background: radial-gradient(circle, #fbbf24, transparent);
-  bottom: -150px;
-  right: -150px;
+  bottom: -75px;
+  right: -75px;
   animation: float 20s ease-in-out infinite reverse;
+}
+
+@media (min-width: 768px) {
+  .orb-gold {
+    width: 400px;
+    height: 400px;
+    bottom: -100px;
+    right: -100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .orb-gold {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    right: -150px;
+  }
 }
 
 .light-dot {
@@ -236,7 +409,7 @@ p {
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 1;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Glass morphism */
@@ -251,14 +424,14 @@ p {
 .metallic-border {
   position: relative;
   background: var(--gradient-metallic);
-  padding: 2px;
-  border-radius: 16px;
-  transition: all 0.3s ease;
+  padding: 1px;
+  border-radius: 6px;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .metallic-border-inner {
   background: var(--card-dark);
-  border-radius: 14px;
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
 }
@@ -272,22 +445,23 @@ p {
   position: absolute;
   inset: 0;
   background: conic-gradient(from var(--shine-angle), transparent, rgba(255, 255, 255, 0.2), transparent);
-  border-radius: 16px;
+  border-radius: 6px;
   animation: rotateShine 2s linear infinite;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
-  padding: 2px;
+  padding: 1px;
 }
 
 /* Cards */
 .card {
   background: var(--card-dark);
-  border-radius: 16px;
+  border-radius: 6px;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .card:hover {
@@ -301,12 +475,12 @@ p {
 /* Buttons */
 .btn {
   padding: 0.875rem 2rem;
-  border-radius: 12px;
+  border-radius: 6px;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
   position: relative;
   overflow: hidden;
   display: inline-flex;
@@ -317,6 +491,7 @@ p {
 .btn-primary {
   background: var(--gradient-swedish);
   color: white;
+  border: 1px solid transparent;
 }
 
 .btn-primary::before {
@@ -340,7 +515,7 @@ p {
 .btn-secondary {
   background: transparent;
   color: var(--text-primary);
-  border: 2px solid var(--grey-dark);
+  border: 1px solid var(--grey-dark);
 }
 
 .btn-secondary:hover {
@@ -351,13 +526,13 @@ p {
 /* Skill tags */
 .skill-tag {
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--card-dark-hover);
   color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .skill-tag:hover {
@@ -370,24 +545,33 @@ p {
 /* Tabs */
 .tab {
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  background: transparent;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text-secondary);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .tab:hover {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .tab.active {
   color: var(--text-primary);
   background: var(--gradient-swedish);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+    0 4px 16px rgba(3, 105, 161, 0.4);
 }
 
 .tab.active::after {
@@ -446,13 +630,23 @@ a:focus-visible {
 
 /* Container */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
