@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll, AnimatePresence } from 'framer-motion';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -9,7 +9,7 @@ export default function Navigation() {
   const [showBackground, setShowBackground] = useState(false);
 
   useMotionValueEvent(scrollY, 'change', (value) => {
-    if (value > 50) {
+    if (value > 100) {
       setShowBackground(true);
     } else {
       setShowBackground(false);
@@ -30,11 +30,11 @@ export default function Navigation() {
       <motion.div
         className="relative"
         animate={{
-          width: showBackground ? '90%' : '100%',
+          width: showBackground ? '80%' : '100%',
           maxWidth: showBackground ? '1200px' : '1536px',
         }}
         transition={{
-          duration: 0.3,
+          duration: 0.4,
           ease: [0.16, 1, 0.3, 1],
         }}
         style={{
@@ -42,39 +42,45 @@ export default function Navigation() {
         }}
       >
         <motion.div
-          className="glass relative"
+          className="relative"
           animate={{
-            background: showBackground
-              ? 'rgba(0, 0, 0, 0.8)'
-              : 'rgba(0, 0, 0, 0.3)',
-            borderColor: showBackground
-              ? 'rgba(255, 255, 255, 0.12)'
-              : 'rgba(255, 255, 255, 0.05)',
+            background: showBackground ? 'rgba(10, 10, 10, 0.95)' : 'rgba(10, 10, 10, 0)',
           }}
           transition={{
-            duration: 0.3,
+            duration: 0.4,
             ease: [0.16, 1, 0.3, 1],
           }}
           style={{
-            borderWidth: '1px',
-            borderStyle: 'solid',
             borderRadius: showBackground ? '12px' : '0px',
-            borderTop: showBackground ? '1px solid' : 'none',
-            borderLeft: showBackground ? '1px solid' : 'none',
-            borderRight: showBackground ? '1px solid' : 'none',
-            borderBottom: '1px solid',
+            backdropFilter: showBackground ? 'blur(12px)' : 'none',
             padding: `var(--component-padding-md) var(--component-padding-lg)`,
-            boxShadow: showBackground
-              ? '0 8px 32px rgba(0, 0, 0, 0.4)'
-              : 'none',
+            border: showBackground ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+            boxShadow: showBackground ? '0 8px 32px rgba(0, 0, 0, 0.4)' : 'none',
           }}
         >
+          <AnimatePresence>
+            {showBackground && (
+              <motion.div
+                key={String(showBackground)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0 h-full w-full pointer-events-none"
+                style={{
+                  background: 'rgba(10, 10, 10, 0.9)',
+                  borderRadius: '12px',
+                  maskImage: 'linear-gradient(to bottom, white, transparent, white)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, white, transparent, white)',
+                }}
+              />
+            )}
+          </AnimatePresence>
           <div className="flex items-center justify-center">
             {/* Desktop Navigation - Centered */}
             <div
               className="hidden md:flex items-center"
               style={{
-                gap: 'var(--gap-lg)',
+                gap: 'var(--gap-2xl)',
               }}
             >
               <a
@@ -83,7 +89,7 @@ export default function Navigation() {
                   e.preventDefault();
                   document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-gray-500 hover:text-white cursor-pointer"
+                className="text-white/80 hover:text-white cursor-pointer"
                 style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
                 Work
@@ -94,7 +100,7 @@ export default function Navigation() {
                   e.preventDefault();
                   document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-gray-500 hover:text-white cursor-pointer"
+                className="text-white/80 hover:text-white cursor-pointer"
                 style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
                 Skills
@@ -105,7 +111,7 @@ export default function Navigation() {
                   e.preventDefault();
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-gray-500 hover:text-white cursor-pointer"
+                className="text-white/80 hover:text-white cursor-pointer"
                 style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
                 Contact

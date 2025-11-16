@@ -53,17 +53,19 @@ export default function Hero() {
               marginBottom: 'var(--gap-xl)',
             }}
           >
-            <span className="block text-white/90" style={{ marginBottom: 'var(--gap-md)' }}>Andrei Dodu</span>
+            <span className="block gradient-text" style={{ marginBottom: 'var(--gap-md)' }}>Andrei Dodu</span>
             <span className="block gradient-text">Full-Stack Developer</span>
           </h1>
 
           <p
-            className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed" style={{ marginLeft: 'auto', marginRight: 'auto' }}
+            className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed"
             style={{
               animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
               animationDelay: '0.2s',
               opacity: 0,
               marginBottom: 'var(--section-spacing-mobile)',
+              marginLeft: 'auto',
+              marginRight: 'auto',
               textAlign: 'center',
             }}
           >

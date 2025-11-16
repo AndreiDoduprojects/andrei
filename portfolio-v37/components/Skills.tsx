@@ -164,16 +164,17 @@ export default function Skills() {
         /* Circuit Board Wire Styles - Next.js Style */
         .circuit-container {
           position: relative;
+          padding-top: 280px;
         }
 
         .circuit-wires {
           position: absolute;
-          top: 0;
+          top: 160px;
           left: 0;
           width: 100%;
-          height: 100%;
+          height: 120px;
           pointer-events: none;
-          z-index: 0;
+          z-index: 1;
         }
 
         .wire-path {
@@ -182,166 +183,38 @@ export default function Skills() {
           fill: none;
         }
 
-        /* Connection dots at wire intersections */
-        .connection-dot {
-          fill: rgba(255, 255, 255, 0.15);
+        /* Neural connection wires from GPU */
+        .neural-wire {
+          stroke: rgba(6, 182, 212, 0.3);
+          stroke-width: 2;
+          fill: none;
+          filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.4));
         }
 
-        /* Traveling Light Particles - Smaller and more subtle */
-        .light-particle {
-          position: absolute;
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 1;
-          opacity: 0;
+        .neural-dot {
+          fill: rgba(6, 182, 212, 0.6);
+          filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.8));
         }
 
-        .light-particle::before {
-          content: '';
-          position: absolute;
-          inset: -4px;
-          background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, rgba(59, 130, 246, 0.4) 40%, transparent 70%);
-          border-radius: 50%;
-          filter: blur(6px);
+        /* Fascicle light particles traveling along wires */
+        .trail-dot {
+          filter: url(#trailGlow);
         }
 
-        .light-particle::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle, #06b6d4 0%, #3b82f6 100%);
-          border-radius: 50%;
-          box-shadow: 0 0 8px rgba(6, 182, 212, 0.8), 0 0 12px rgba(59, 130, 246, 0.6);
-        }
-
-        /* Horizontal wire animation - travels left to right along the top wire */
-        @keyframes travelHorizontal {
-          0% {
-            left: 0%;
-            top: 80px;
-            opacity: 0;
-          }
-          3% {
-            opacity: 1;
-          }
-          97% {
-            opacity: 1;
-          }
-          100% {
-            left: 100%;
-            top: 80px;
-            opacity: 0;
-          }
-        }
-
-        /* Vertical drop animations - lights travel down from horizontal wire to each card */
-        @keyframes travelVerticalCard1 {
-          0% {
-            left: 12.5%;
-            top: 80px;
-            opacity: 0;
-          }
-          5% {
-            opacity: 1;
-          }
-          95% {
-            opacity: 1;
-          }
-          100% {
-            left: 12.5%;
-            top: 100%;
-            opacity: 0;
-          }
-        }
-
-        @keyframes travelVerticalCard2 {
-          0% {
-            left: 37.5%;
-            top: 80px;
-            opacity: 0;
-          }
-          5% {
-            opacity: 1;
-          }
-          95% {
-            opacity: 1;
-          }
-          100% {
-            left: 37.5%;
-            top: 100%;
-            opacity: 0;
-          }
-        }
-
-        @keyframes travelVerticalCard3 {
-          0% {
-            left: 62.5%;
-            top: 80px;
-            opacity: 0;
-          }
-          5% {
-            opacity: 1;
-          }
-          95% {
-            opacity: 1;
-          }
-          100% {
-            left: 62.5%;
-            top: 100%;
-            opacity: 0;
-          }
-        }
-
-        @keyframes travelVerticalCard4 {
-          0% {
-            left: 87.5%;
-            top: 80px;
-            opacity: 0;
-          }
-          5% {
-            opacity: 1;
-          }
-          95% {
-            opacity: 1;
-          }
-          100% {
-            left: 87.5%;
-            top: 100%;
-            opacity: 0;
-          }
-        }
-
-        /* Activate animations when visible */
-        .circuit-container.active .light-particle-horizontal {
-          animation: travelHorizontal 4s linear infinite;
-        }
-
-        .circuit-container.active .light-particle-1 {
-          animation: travelVerticalCard1 2s linear infinite;
-          animation-delay: 0.5s;
-        }
-
-        .circuit-container.active .light-particle-2 {
-          animation: travelVerticalCard2 2s linear infinite;
-          animation-delay: 1s;
-        }
-
-        .circuit-container.active .light-particle-3 {
-          animation: travelVerticalCard3 2s linear infinite;
-          animation-delay: 1.5s;
-        }
-
-        .circuit-container.active .light-particle-4 {
-          animation: travelVerticalCard4 2s linear infinite;
-          animation-delay: 2s;
-        }
+        /* Seamless gradient colors - orange to yellow to cyan to blue */
+        .trail-dot-1 { fill: rgba(255, 159, 64, 1); opacity: 1; }    /* Orange */
+        .trail-dot-2 { fill: rgba(255, 205, 86, 1); opacity: 0.9; }  /* Yellow */
+        .trail-dot-3 { fill: rgba(54, 235, 235, 1); opacity: 0.7; }  /* Cyan */
+        .trail-dot-4 { fill: rgba(54, 162, 235, 1); opacity: 0.5; }  /* Blue */
+        .trail-dot-5 { fill: rgba(54, 162, 235, 1); opacity: 0.3; }  /* Blue fade */
+        .trail-dot-6 { fill: rgba(54, 162, 235, 1); opacity: 0.15; } /* Blue fade */
+        .trail-dot-7 { fill: rgba(54, 162, 235, 1); opacity: 0.05; } /* Blue fade */
 
         /* Desktop-only wires and particles (hidden on mobile/tablet) */
         @media (max-width: 1023px) {
           .circuit-wires,
-          .light-particle,
+          .fascicle-light,
+          .neural-connections,
           .powered-by-logo {
             display: none;
           }
@@ -350,14 +223,14 @@ export default function Skills() {
         /* Powered By logo styling */
         .powered-by-logo {
           position: absolute;
-          top: 30px;
+          top: 0;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 10;
+          z-index: 3;
         }
 
         .powered-by-logo svg {
-          filter: drop-shadow(0 0 10px rgba(3, 105, 161, 0.3));
+          filter: drop-shadow(0 0 20px rgba(3, 105, 161, 0.4));
         }
 
         /* Skill Card Styles */
@@ -431,12 +304,12 @@ export default function Skills() {
             }}
           >
             <h2
-              className="text-5xl sm:text-6xl font-bold text-white"
+              className="text-5xl sm:text-6xl font-bold gradient-text"
               style={{ marginBottom: 'var(--spacing-lg)' }}
             >
               Built on a foundation of
               <br />
-              <span className="gradient-text">fast, production-grade tooling</span>
+              fast, production-grade tooling
             </h2>
             <p className="text-xl text-gray-500">
               Modern technologies and expertise that power exceptional results
@@ -445,105 +318,754 @@ export default function Skills() {
 
           {/* Skills Grid with Circuit Board Effect */}
           <div className={`circuit-container ${isVisible ? 'active' : ''}`}>
-            {/* Powered By Logo */}
+            {/* GPU/Neural Processor Logo */}
             <div className="powered-by-logo">
-              <svg width="150" height="50" viewBox="0 0 150 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="480" height="160" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
                 <defs>
-                  {/* Main gradient for logo */}
-                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  {/* Main gradient for GPU */}
+                  <linearGradient id="gpuGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#0369a1"/>
-                    <stop offset="100%" stopColor="#fbbf24"/>
+                    <stop offset="50%" stopColor="#3b82f6"/>
+                    <stop offset="100%" stopColor="#06b6d4"/>
                   </linearGradient>
 
-                  {/* Glow gradient for outer ring */}
-                  <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#0369a1" stopOpacity="0.3"/>
-                    <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.3"/>
+                  {/* Glow gradient */}
+                  <linearGradient id="gpuGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#0369a1" stopOpacity="0.6"/>
+                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.6"/>
                   </linearGradient>
+
+                  {/* Pulsing animation */}
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
                 </defs>
 
-                {/* Outer hexagonal badge frame */}
-                <path d="M 35 5 L 50 10 L 50 20 L 35 25 L 20 20 L 20 10 Z"
-                      stroke="url(#logoGradient)"
-                      strokeWidth="1.5"
-                      fill="rgba(3, 105, 161, 0.05)"/>
+                {/* Main GPU chip body */}
+                <rect x="90" y="20" width="100" height="60" rx="4"
+                      stroke="url(#gpuGradient)"
+                      strokeWidth="2"
+                      fill="rgba(3, 105, 161, 0.08)"/>
 
-                {/* Inner geometric "A" - Angular design */}
-                <path d="M 30 19 L 35 11 L 40 19 M 32 17 L 38 17"
-                      stroke="url(#logoGradient)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"/>
+                {/* Inner circuit details */}
+                <rect x="100" y="30" width="35" height="15" rx="2"
+                      stroke="url(#gpuGradient)"
+                      strokeWidth="1"
+                      fill="rgba(59, 130, 246, 0.1)"/>
+                <rect x="145" y="30" width="35" height="15" rx="2"
+                      stroke="url(#gpuGradient)"
+                      strokeWidth="1"
+                      fill="rgba(59, 130, 246, 0.1)"/>
+                <rect x="100" y="55" width="35" height="15" rx="2"
+                      stroke="url(#gpuGradient)"
+                      strokeWidth="1"
+                      fill="rgba(59, 130, 246, 0.1)"/>
+                <rect x="145" y="55" width="35" height="15" rx="2"
+                      stroke="url(#gpuGradient)"
+                      strokeWidth="1"
+                      fill="rgba(59, 130, 246, 0.1)"/>
 
-                {/* Geometric "D" with circuit style */}
-                <path d="M 60 11 L 60 19 M 60 15 L 65 11 L 68 15 L 65 19 L 60 19"
-                      stroke="url(#logoGradient)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"/>
+                {/* Center core with pulsing effect */}
+                <circle cx="140" cy="50" r="8"
+                        fill="url(#gpuGradient)"
+                        filter="url(#glow)">
+                  <animate attributeName="opacity"
+                           values="0.6;1;0.6"
+                           dur="2s"
+                           repeatCount="indefinite"/>
+                </circle>
 
-                {/* Connection dots around the hexagon - like circuit nodes */}
-                <circle cx="35" cy="5" r="2" fill="url(#logoGradient)"/>
-                <circle cx="50" cy="10" r="2" fill="url(#logoGradient)"/>
-                <circle cx="50" cy="20" r="2" fill="url(#logoGradient)"/>
-                <circle cx="35" cy="25" r="2" fill="url(#logoGradient)"/>
-                <circle cx="20" cy="20" r="2" fill="url(#logoGradient)"/>
-                <circle cx="20" cy="10" r="2" fill="url(#logoGradient)"/>
+                {/* Left side output pins - 2 pins for Cards 1L & 1R */}
+                <rect x="82" y="38" width="8" height="4" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="82" y="58" width="8" height="4" fill="url(#gpuGradient)" rx="1"/>
 
-                {/* Subtle text label beneath */}
-                <text x="75" y="32"
-                      fontFamily="system-ui, -apple-system, sans-serif"
-                      fontSize="7"
-                      fontWeight="600"
-                      letterSpacing="1.5"
-                      fill="rgba(255, 255, 255, 0.35)">
-                  TECH STACK
-                </text>
+                {/* Right side output pins - 2 pins for Cards 4L & 4R */}
+                <rect x="190" y="38" width="8" height="4" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="190" y="58" width="8" height="4" fill="url(#gpuGradient)" rx="1"/>
 
-                {/* Small accent dots */}
-                <circle cx="75" cy="15" r="1" fill="url(#logoGradient)" opacity="0.4"/>
-                <circle cx="130" cy="15" r="1" fill="url(#logoGradient)" opacity="0.4"/>
+                {/* Bottom output pins - 5 pins symmetrical with top */}
+                <rect x="100" y="80" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="120" y="80" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="138" y="80" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="156" y="80" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="176" y="80" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+
+                {/* Top input pins - 5 pins */}
+                <rect x="100" y="12" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="120" y="12" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="138" y="12" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="156" y="12" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+                <rect x="176" y="12" width="4" height="8" fill="url(#gpuGradient)" rx="1"/>
+
+                {/* Corner decorative elements */}
+                <circle cx="95" cy="25" r="2" fill="url(#gpuGradient)"/>
+                <circle cx="185" cy="25" r="2" fill="url(#gpuGradient)"/>
+                <circle cx="95" cy="75" r="2" fill="url(#gpuGradient)"/>
+                <circle cx="185" cy="75" r="2" fill="url(#gpuGradient)"/>
               </svg>
             </div>
 
-            {/* SVG Circuit Wires - Desktop Only - Next.js Style */}
-            <svg className="circuit-wires" viewBox="0 0 1000 600" preserveAspectRatio="none">
-              {/* Main horizontal wire across the top */}
-              <line x1="0" y1="80" x2="1000" y2="80" className="wire-path" />
+            {/* Neural Wire Grid - Independent wire routing */}
+            <svg className="neural-connections" viewBox="0 -80 1280 360" preserveAspectRatio="xMidYMin meet"
+                 style={{ position: 'absolute', top: -80, left: 0, width: '100%', height: '360px', pointerEvents: 'none', zIndex: 11 }}>
 
-              {/* Vertical wires dropping to each card (4 cards) */}
-              {/* Card 1 - Left (12.5% position) */}
-              <line x1="125" y1="80" x2="125" y2="600" className="wire-path" />
+              <defs>
+                {/* Soft glow filter for trail dots */}
+                <filter id="trailGlow">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
 
-              {/* Card 2 - Mid-Left (37.5% position) */}
-              <line x1="375" y1="80" x2="375" y2="600" className="wire-path" />
+              {/* Wire 1: Card 1 Left - from left pin 1 */}
+              <path id="wire1" d="M 546 64 L 120 64 L 120 280"
+                    className="neural-wire"
+                    fill="none" />
 
-              {/* Card 3 - Mid-Right (62.5% position) */}
-              <line x1="625" y1="80" x2="625" y2="600" className="wire-path" />
+              {/* Wire 2: Card 1 Right - from left pin 2 */}
+              <path id="wire2" d="M 546 96 L 140 96 L 140 260 L 182 260 L 182 280"
+                    className="neural-wire"
+                    fill="none" />
 
-              {/* Card 4 - Right (87.5% position) */}
-              <line x1="875" y1="80" x2="875" y2="600" className="wire-path" />
+              {/* Wire 3a: Card 2 Left - from card upward to first neural dot */}
+              <path id="wire3a" d="M 446 280 L 446 215 L 429 215 L 429 110"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="429" cy="110" r="4" className="neural-dot"/>
 
-              {/* Connection dots at wire intersections */}
-              {/* Center hub around "Powered By" label */}
-              <circle cx="500" cy="80" r="3" className="connection-dot" />
+              {/* Wire 3aa: From top munstycke 2 - emerges from "underground" at second neural dot */}
+              <path id="wire3aa" d="M 611 19 L 611 -5 L 429 -5 L 429 50"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="429" cy="50" r="4" className="neural-dot"/>
 
-              {/* Junction dots where vertical wires meet horizontal wire */}
-              <circle cx="125" cy="80" r="3" className="connection-dot" />
-              <circle cx="375" cy="80" r="3" className="connection-dot" />
-              <circle cx="625" cy="80" r="3" className="connection-dot" />
-              <circle cx="875" cy="80" r="3" className="connection-dot" />
+              {/* Wire 3ab: From top munstycke 1 - mirror of 3b, bend upward */}
+              <path id="wire3ab" d="M 579 19 L 579 5 L 500 5"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="500" cy="5" r="4" className="neural-dot"/>
+
+              {/* Wire 3b: From bottom munstycke 1 - one bend then stop at neural dot */}
+              <path id="wire3b" d="M 579 136 L 579 160 L 500 160"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="500" cy="160" r="4" className="neural-dot"/>
+
+              {/* Wire 4: Card 2 Right - from bottom pin 3 (center) */}
+              <path id="wire4" d="M 640 136 L 640 215 L 488 215 L 488 280"
+                    className="neural-wire"
+                    fill="none" />
+
+              {/* Wire 4b: From bottom munstycke 2 - higher bend, longer wire with dot */}
+              <path id="wire4b" d="M 611 136 L 611 180 L 480 180"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="480" cy="180" r="4" className="neural-dot"/>
+
+              {/* Wire 5: Card 3 Left - from bottom pin 4 */}
+              <path id="wire5" d="M 669 136 L 669 175 L 772 175 L 772 280"
+                    className="neural-wire"
+                    fill="none" />
+
+              {/* Wire 5B: From bottom pin 5 - decorative wire ending in neural dot */}
+              <path id="wire5b" d="M 701 136 L 701 155 L 800 155"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="800" cy="155" r="4" className="neural-dot"/>
+
+              {/* Wire 5c: From top munstycke 5 - mirrored version of 3ab */}
+              <path id="wire5c" d="M 702 19 L 702 5 L 800 5"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="800" cy="5" r="4" className="neural-dot"/>
+
+              {/* Wire 5d: From top munstycke 3 - decorative wire pointing toward title */}
+              <path id="wire5d" d="M 640 19 L 640 -20"
+                    className="neural-wire"
+                    fill="none" />
+              <circle cx="640" cy="-20" r="4" className="neural-dot"/>
+
+              {/* Wire 6: Card 3 Right - from right pin 2 */}
+              <path id="wire6" d="M 734 96 L 834 96 L 834 280"
+                    className="neural-wire"
+                    fill="none" />
+
+              {/* Wire 7: Card 4 Left - from right pin 1 */}
+              <path id="wire7" d="M 734 64 L 1098 64 L 1098 280"
+                    className="neural-wire"
+                    fill="none" />
+
+              {/* Wire 8: Card 4 Right - from top pin 4 */}
+              <path id="wire8" d="M 669 19 L 669 -5 L 1160 -5 L 1160 280"
+                    className="neural-wire"
+                    fill="none" />
+
+              {/* Connection dots removed for cleaner look */}
+
+              {/* Fascicle lights traveling along each wire path */}
+              {/* Wire 1 - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="0s">
+                  <mpath href="#wire1"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="0.05s">
+                  <mpath href="#wire1"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="0.10s">
+                  <mpath href="#wire1"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="0.15s">
+                  <mpath href="#wire1"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="0.20s">
+                  <mpath href="#wire1"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="0.25s">
+                  <mpath href="#wire1"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="0.30s">
+                  <mpath href="#wire1"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 2 - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="15s">
+                  <mpath href="#wire2"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="15.05s">
+                  <mpath href="#wire2"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="15.10s">
+                  <mpath href="#wire2"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="15.15s">
+                  <mpath href="#wire2"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="15.20s">
+                  <mpath href="#wire2"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="15.25s">
+                  <mpath href="#wire2"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="15.30s">
+                  <mpath href="#wire2"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 4 - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="45s">
+                  <mpath href="#wire4"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="45.05s">
+                  <mpath href="#wire4"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="45.10s">
+                  <mpath href="#wire4"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="45.15s">
+                  <mpath href="#wire4"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="45.20s">
+                  <mpath href="#wire4"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="45.25s">
+                  <mpath href="#wire4"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="45.30s">
+                  <mpath href="#wire4"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 5 - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="60s">
+                  <mpath href="#wire5"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="60.05s">
+                  <mpath href="#wire5"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="60.10s">
+                  <mpath href="#wire5"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="60.15s">
+                  <mpath href="#wire5"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="60.20s">
+                  <mpath href="#wire5"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="60.25s">
+                  <mpath href="#wire5"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="60.30s">
+                  <mpath href="#wire5"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 6 - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="75s">
+                  <mpath href="#wire6"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="75.05s">
+                  <mpath href="#wire6"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="75.10s">
+                  <mpath href="#wire6"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="75.15s">
+                  <mpath href="#wire6"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="75.20s">
+                  <mpath href="#wire6"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="75.25s">
+                  <mpath href="#wire6"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="75.30s">
+                  <mpath href="#wire6"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 7 - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="90s">
+                  <mpath href="#wire7"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="90.05s">
+                  <mpath href="#wire7"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="90.10s">
+                  <mpath href="#wire7"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="90.15s">
+                  <mpath href="#wire7"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="90.20s">
+                  <mpath href="#wire7"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="90.25s">
+                  <mpath href="#wire7"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="90.30s">
+                  <mpath href="#wire7"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 8 - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="105s">
+                  <mpath href="#wire8"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="105.05s">
+                  <mpath href="#wire8"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="105.10s">
+                  <mpath href="#wire8"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="105.15s">
+                  <mpath href="#wire8"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="105.20s">
+                  <mpath href="#wire8"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="105.25s">
+                  <mpath href="#wire8"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="105.30s">
+                  <mpath href="#wire8"/>
+                </animateMotion>
+              </circle>
+
+              {/* Decorative wire fascicles - meteor trails */}
+              {/* Wire 3a - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5s">
+                  <mpath href="#wire3a"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.05s">
+                  <mpath href="#wire3a"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.10s">
+                  <mpath href="#wire3a"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.15s">
+                  <mpath href="#wire3a"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.20s">
+                  <mpath href="#wire3a"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.25s">
+                  <mpath href="#wire3a"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.30s">
+                  <mpath href="#wire3a"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 3aa - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5s">
+                  <mpath href="#wire3aa"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.05s">
+                  <mpath href="#wire3aa"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.10s">
+                  <mpath href="#wire3aa"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.15s">
+                  <mpath href="#wire3aa"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.20s">
+                  <mpath href="#wire3aa"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.25s">
+                  <mpath href="#wire3aa"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="8s" repeatCount="indefinite" begin="5.30s">
+                  <mpath href="#wire3aa"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 3ab - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="2s">
+                  <mpath href="#wire3ab"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="2.05s">
+                  <mpath href="#wire3ab"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="2.10s">
+                  <mpath href="#wire3ab"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="2.15s">
+                  <mpath href="#wire3ab"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="2.20s">
+                  <mpath href="#wire3ab"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="2.25s">
+                  <mpath href="#wire3ab"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="2.30s">
+                  <mpath href="#wire3ab"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 3b - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="8s">
+                  <mpath href="#wire3b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="8.05s">
+                  <mpath href="#wire3b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="8.10s">
+                  <mpath href="#wire3b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="8.15s">
+                  <mpath href="#wire3b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="8.20s">
+                  <mpath href="#wire3b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="8.25s">
+                  <mpath href="#wire3b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="8.30s">
+                  <mpath href="#wire3b"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 4b - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="12s">
+                  <mpath href="#wire4b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="12.05s">
+                  <mpath href="#wire4b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="12.10s">
+                  <mpath href="#wire4b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="12.15s">
+                  <mpath href="#wire4b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="12.20s">
+                  <mpath href="#wire4b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="12.25s">
+                  <mpath href="#wire4b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="12.30s">
+                  <mpath href="#wire4b"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 5b - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="3s">
+                  <mpath href="#wire5b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="3.05s">
+                  <mpath href="#wire5b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="3.10s">
+                  <mpath href="#wire5b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="3.15s">
+                  <mpath href="#wire5b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="3.20s">
+                  <mpath href="#wire5b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="3.25s">
+                  <mpath href="#wire5b"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="3.30s">
+                  <mpath href="#wire5b"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 5c - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="9s">
+                  <mpath href="#wire5c"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="9.05s">
+                  <mpath href="#wire5c"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="9.10s">
+                  <mpath href="#wire5c"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="9.15s">
+                  <mpath href="#wire5c"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="9.20s">
+                  <mpath href="#wire5c"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="9.25s">
+                  <mpath href="#wire5c"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="6s" repeatCount="indefinite" begin="9.30s">
+                  <mpath href="#wire5c"/>
+                </animateMotion>
+              </circle>
+
+              {/* Wire 5d - meteor trail (7 dots for seamless gradient) */}
+              <circle r="2.5" className="trail-dot trail-dot-1">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="1s">
+                  <mpath href="#wire5d"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-2">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="1.05s">
+                  <mpath href="#wire5d"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-3">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="1.10s">
+                  <mpath href="#wire5d"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-4">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="1.15s">
+                  <mpath href="#wire5d"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-5">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="1.20s">
+                  <mpath href="#wire5d"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-6">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="1.25s">
+                  <mpath href="#wire5d"/>
+                </animateMotion>
+              </circle>
+              <circle r="2.5" className="trail-dot trail-dot-7">
+                <animateMotion dur="7s" repeatCount="indefinite" begin="1.30s">
+                  <mpath href="#wire5d"/>
+                </animateMotion>
+              </circle>
             </svg>
-
-            {/* Traveling Light Particles - Next.js Style */}
-            {/* One horizontal light traveling along top wire */}
-            <div className="light-particle light-particle-horizontal"></div>
-
-            {/* Four vertical lights, one for each card */}
-            <div className="light-particle light-particle-1"></div>
-            <div className="light-particle light-particle-2"></div>
-            <div className="light-particle light-particle-3"></div>
-            <div className="light-particle light-particle-4"></div>
 
             {/* Skills Grid */}
             <div
