@@ -29,9 +29,14 @@ export default function StructuredData() {
       'TypeScript',
       'Node.js',
       'PostgreSQL',
+      'Machine Learning',
+      'ML Training',
+      'Model Fine-tuning',
+      'ML Optimization',
       'Value Investing',
       'Financial Analysis',
-      'Portfolio Management'
+      'Portfolio Management',
+      'Product Shipping'
     ],
     knowsLanguage: [
       {

@@ -9,7 +9,7 @@ export const translations = {
     hero: {
       name: 'Andrei Dodu',
       title: 'Full-Stack Developer',
-      tagline: 'Crafting elegant solutions at the intersection of technology and finance',
+      tagline: 'Deep ML expertise and product shipping at the intersection of technology and finance',
       cta: 'Get In Touch',
       viewWork: 'View Work',
     },
@@ -69,7 +69,7 @@ export const translations = {
     hero: {
       name: 'Andrei Dodu',
       title: 'Full-Stack Utvecklare',
-      tagline: 'Skapar eleganta lösningar i skärningspunkten mellan teknologi och finans',
+      tagline: 'Djup ML-expertis och produktleverans i skärningspunkten mellan teknologi och finans',
       cta: 'Kontakta Mig',
       viewWork: 'Se Projekt',
     },

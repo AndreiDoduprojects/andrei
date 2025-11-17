@@ -52,13 +52,19 @@ export default function Skills() {
       ),
     },
     {
-      category: 'DevOps',
-      items: ['Docker', 'AWS', 'CI/CD', 'Kubernetes'],
+      category: 'ML & AI',
+      items: ['Training', 'Fine-tuning', 'Optimization', 'Model Deployment'],
       icon: (
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 17l10 5 10-5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 12l10 5 10-5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="12" cy="12" r="3" stroke="url(#gradient3)" strokeWidth="2"/>
+          <circle cx="6" cy="6" r="2" stroke="url(#gradient3)" strokeWidth="2"/>
+          <circle cx="18" cy="6" r="2" stroke="url(#gradient3)" strokeWidth="2"/>
+          <circle cx="6" cy="18" r="2" stroke="url(#gradient3)" strokeWidth="2"/>
+          <circle cx="18" cy="18" r="2" stroke="url(#gradient3)" strokeWidth="2"/>
+          <line x1="8" y1="7" x2="10" y2="10" stroke="url(#gradient3)" strokeWidth="2"/>
+          <line x1="16" y1="7" x2="14" y2="10" stroke="url(#gradient3)" strokeWidth="2"/>
+          <line x1="8" y1="17" x2="10" y2="14" stroke="url(#gradient3)" strokeWidth="2"/>
+          <line x1="16" y1="17" x2="14" y2="14" stroke="url(#gradient3)" strokeWidth="2"/>
           <defs>
             <linearGradient id="gradient3" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
               <stop stopColor="#0369a1"/>
