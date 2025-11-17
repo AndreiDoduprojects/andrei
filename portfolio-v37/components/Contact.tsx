@@ -1,7 +1,41 @@
 'use client';
 
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useEffect, useRef, useState } from 'react';
+
 export default function Contact() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Slight delay for dramatic entrance
+            setTimeout(() => {
+              setIsVisible(true);
+            }, 100);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '100px', // Trigger well before entering viewport
+      }
+    );
+
+    observer.observe(card);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <section
@@ -26,12 +60,34 @@ export default function Contact() {
             padding-bottom: calc(var(--section-spacing-desktop) + 100px);
           }
         }
+
+        @keyframes revealContactCard {
+          0% {
+            opacity: 0;
+            transform: translateY(50px) scale(0.92);
+            filter: blur(8px);
+          }
+          40% {
+            filter: blur(3px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+          }
+        }
+
+        .contact-card-reveal {
+          animation: revealContactCard 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
       `}</style>
 
       <div className="container">
         <div className="max-w-4xl" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
           {/* Floating Card */}
           <div
+            ref={cardRef}
+            className={isVisible ? 'contact-card-reveal' : ''}
             style={{
               background: 'rgba(255, 255, 255, 0.02)',
               border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -39,10 +95,11 @@ export default function Contact() {
               padding: 'var(--spacing-3xl)',
               textAlign: 'center',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+              opacity: isVisible ? 1 : 0,
             }}
           >
-            <h2 className="text-5xl sm:text-6xl font-bold text-white" style={{ marginBottom: 'var(--spacing-lg)' }}>Get In Touch</h2>
-            <p className="text-xl text-gray-500" style={{ marginBottom: 'var(--spacing-3xl)' }}>Available for select projects and collaborations</p>
+            <h2 className="text-5xl sm:text-6xl font-bold text-white" style={{ marginBottom: 'var(--spacing-lg)' }}>{t.contact.title}</h2>
+            <p className="text-xl text-gray-500" style={{ marginBottom: 'var(--spacing-3xl)' }}>{t.contact.subtitle}</p>
 
             <a
               href="mailto:me@andreidodu.se"
@@ -99,8 +156,8 @@ export default function Contact() {
               fontSize: '0.875rem',
               color: 'rgb(115, 115, 115)',
             }}>
-              <div>© {currentYear} Andrei Dodu</div>
-              <div>Göteborg, Sweden</div>
+              <div>© {currentYear} {t.footer.copyright}</div>
+              <div>{t.footer.location}</div>
             </div>
           </div>
         </div>

@@ -54,10 +54,7 @@ export default function Background() {
 
   return (
     <div className="background-container">
-      {/* Layer 2: Dot Grid */}
-      <div className="dot-grid" />
-
-      {/* Layer 3: Floating Gradient Orbs */}
+      {/* Layer 2: Floating Gradient Orbs */}
       <div className="gradient-orb orb-blue" />
       <div className="gradient-orb orb-gold" />
 

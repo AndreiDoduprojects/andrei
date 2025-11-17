@@ -2,11 +2,14 @@
 
 import { useState } from 'react';
 import { motion, useMotionValueEvent, useScroll, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const [showBackground, setShowBackground] = useState(false);
+  const { t } = useLanguage();
 
   useMotionValueEvent(scrollY, 'change', (value) => {
     if (value > 100) {
@@ -75,10 +78,15 @@ export default function Navigation() {
               />
             )}
           </AnimatePresence>
-          <div className="flex items-center justify-center">
-            {/* Desktop Navigation - Centered */}
+          <div className="flex items-center justify-between w-full">
+            {/* Language Switcher - Left */}
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
+
+            {/* Desktop Navigation - Center */}
             <div
-              className="hidden md:flex items-center"
+              className="hidden md:flex items-center mx-auto"
               style={{
                 gap: 'var(--gap-2xl)',
               }}
@@ -92,7 +100,7 @@ export default function Navigation() {
                 className="text-white/80 hover:text-white cursor-pointer"
                 style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
-                Work
+                {t.nav.work}
               </a>
               <a
                 href="#skills"
@@ -103,7 +111,7 @@ export default function Navigation() {
                 className="text-white/80 hover:text-white cursor-pointer"
                 style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
-                Skills
+                {t.nav.skills}
               </a>
               <a
                 href="#contact"
@@ -114,9 +122,12 @@ export default function Navigation() {
                 className="text-white/80 hover:text-white cursor-pointer"
                 style={{ transition: 'color 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
               >
-                Contact
+                {t.nav.contact}
               </a>
             </div>
+
+            {/* Placeholder for balance on desktop */}
+            <div className="hidden md:block" style={{ width: '80px' }}></div>
 
             {/* Mobile Menu Button - Centered */}
             <button
@@ -180,7 +191,7 @@ export default function Navigation() {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  Work
+                  {t.nav.work}
                 </a>
                 <a
                   href="#skills"
@@ -195,7 +206,7 @@ export default function Navigation() {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  Skills
+                  {t.nav.skills}
                 </a>
                 <a
                   href="#contact"
@@ -210,8 +221,11 @@ export default function Navigation() {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  Contact
+                  {t.nav.contact}
                 </a>
+                <div style={{ padding: 'var(--component-padding-sm)' }}>
+                  <LanguageSwitcher />
+                </div>
               </div>
             </div>
           )}
