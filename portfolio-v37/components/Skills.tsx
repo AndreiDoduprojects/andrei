@@ -185,15 +185,14 @@ export default function Skills() {
 
         /* Neural connection wires from GPU */
         .neural-wire {
-          stroke: rgba(6, 182, 212, 0.3);
-          stroke-width: 2;
+          stroke: rgba(255, 255, 255, 0.08);
+          stroke-width: 1;
           fill: none;
-          filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.4));
         }
 
         .neural-dot {
-          fill: rgba(6, 182, 212, 0.6);
-          filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.8));
+          fill: rgba(255, 255, 255, 0.4);
+          filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
         }
 
         /* Fascicle light particles traveling along wires */
@@ -307,9 +306,9 @@ export default function Skills() {
               className="text-5xl sm:text-6xl font-bold gradient-text"
               style={{ marginBottom: 'var(--spacing-lg)' }}
             >
-              Built on a foundation of
+              Crafting solutions with
               <br />
-              fast, production-grade tooling
+              modern, battle-tested technology
             </h2>
             <p className="text-xl text-gray-500">
               Modern technologies and expertise that power exceptional results
@@ -512,111 +511,111 @@ export default function Skills() {
               {/* Fascicle lights traveling along each wire path */}
               {/* Wire 1 - meteor trail (7 dots for seamless gradient) */}
               <circle r="2.5" className="trail-dot trail-dot-1">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="0s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="0.00s; 15.00s; 30.00s; 45.00s; 60.00s; 75.00s; 90.00s; 105.00s; 120.00s; 135.00s; 150.00s">
                   <mpath href="#wire1"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-2">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="0.05s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="0.05s; 15.05s; 30.05s; 45.05s; 60.05s; 75.05s; 90.05s; 105.05s; 120.05s; 135.05s; 150.05s">
                   <mpath href="#wire1"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-3">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="0.10s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="0.10s; 15.10s; 30.10s; 45.10s; 60.10s; 75.10s; 90.10s; 105.10s; 120.10s; 135.10s; 150.10s">
                   <mpath href="#wire1"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-4">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="0.15s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="0.15s; 15.15s; 30.15s; 45.15s; 60.15s; 75.15s; 90.15s; 105.15s; 120.15s; 135.15s; 150.15s">
                   <mpath href="#wire1"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-5">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="0.20s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="0.20s; 15.20s; 30.20s; 45.20s; 60.20s; 75.20s; 90.20s; 105.20s; 120.20s; 135.20s; 150.20s">
                   <mpath href="#wire1"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-6">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="0.25s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="0.25s; 15.25s; 30.25s; 45.25s; 60.25s; 75.25s; 90.25s; 105.25s; 120.25s; 135.25s; 150.25s">
                   <mpath href="#wire1"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-7">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="0.30s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="0.30s; 15.30s; 30.30s; 45.30s; 60.30s; 75.30s; 90.30s; 105.30s; 120.30s; 135.30s; 150.30s">
                   <mpath href="#wire1"/>
                 </animateMotion>
               </circle>
 
               {/* Wire 2 - meteor trail (7 dots for seamless gradient) */}
               <circle r="2.5" className="trail-dot trail-dot-1">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="15s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="5.00s; 20.00s; 35.00s; 50.00s; 65.00s; 80.00s; 95.00s; 110.00s; 125.00s; 140.00s; 155.00s">
                   <mpath href="#wire2"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-2">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="15.05s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="5.05s; 20.05s; 35.05s; 50.05s; 65.05s; 80.05s; 95.05s; 110.05s; 125.05s; 140.05s; 155.05s">
                   <mpath href="#wire2"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-3">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="15.10s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="5.10s; 20.10s; 35.10s; 50.10s; 65.10s; 80.10s; 95.10s; 110.10s; 125.10s; 140.10s; 155.10s">
                   <mpath href="#wire2"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-4">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="15.15s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="5.15s; 20.15s; 35.15s; 50.15s; 65.15s; 80.15s; 95.15s; 110.15s; 125.15s; 140.15s; 155.15s">
                   <mpath href="#wire2"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-5">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="15.20s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="5.20s; 20.20s; 35.20s; 50.20s; 65.20s; 80.20s; 95.20s; 110.20s; 125.20s; 140.20s; 155.20s">
                   <mpath href="#wire2"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-6">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="15.25s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="5.25s; 20.25s; 35.25s; 50.25s; 65.25s; 80.25s; 95.25s; 110.25s; 125.25s; 140.25s; 155.25s">
                   <mpath href="#wire2"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-7">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="15.30s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="5.30s; 20.30s; 35.30s; 50.30s; 65.30s; 80.30s; 95.30s; 110.30s; 125.30s; 140.30s; 155.30s">
                   <mpath href="#wire2"/>
                 </animateMotion>
               </circle>
 
               {/* Wire 4 - meteor trail (7 dots for seamless gradient) */}
               <circle r="2.5" className="trail-dot trail-dot-1">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="45s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="10.00s; 25.00s; 40.00s; 55.00s; 70.00s; 85.00s; 100.00s; 115.00s; 130.00s; 145.00s; 160.00s">
                   <mpath href="#wire4"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-2">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="45.05s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="10.05s; 25.05s; 40.05s; 55.05s; 70.05s; 85.05s; 100.05s; 115.05s; 130.05s; 145.05s; 160.05s">
                   <mpath href="#wire4"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-3">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="45.10s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="10.10s; 25.10s; 40.10s; 55.10s; 70.10s; 85.10s; 100.10s; 115.10s; 130.10s; 145.10s; 160.10s">
                   <mpath href="#wire4"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-4">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="45.15s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="10.15s; 25.15s; 40.15s; 55.15s; 70.15s; 85.15s; 100.15s; 115.15s; 130.15s; 145.15s; 160.15s">
                   <mpath href="#wire4"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-5">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="45.20s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="10.20s; 25.20s; 40.20s; 55.20s; 70.20s; 85.20s; 100.20s; 115.20s; 130.20s; 145.20s; 160.20s">
                   <mpath href="#wire4"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-6">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="45.25s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="10.25s; 25.25s; 40.25s; 55.25s; 70.25s; 85.25s; 100.25s; 115.25s; 130.25s; 145.25s; 160.25s">
                   <mpath href="#wire4"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-7">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="45.30s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="10.30s; 25.30s; 40.30s; 55.30s; 70.30s; 85.30s; 100.30s; 115.30s; 130.30s; 145.30s; 160.30s">
                   <mpath href="#wire4"/>
                 </animateMotion>
               </circle>
@@ -734,37 +733,37 @@ export default function Skills() {
 
               {/* Wire 8 - meteor trail (7 dots for seamless gradient) */}
               <circle r="2.5" className="trail-dot trail-dot-1">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="105s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="7.50s; 17.50s; 27.50s; 37.50s; 47.50s; 57.50s; 67.50s; 77.50s; 87.50s; 97.50s; 107.50s; 117.50s; 127.50s; 137.50s; 147.50s; 157.50s">
                   <mpath href="#wire8"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-2">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="105.05s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="7.55s; 17.55s; 27.55s; 37.55s; 47.55s; 57.55s; 67.55s; 77.55s; 87.55s; 97.55s; 107.55s; 117.55s; 127.55s; 137.55s; 147.55s; 157.55s">
                   <mpath href="#wire8"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-3">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="105.10s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="7.60s; 17.60s; 27.60s; 37.60s; 47.60s; 57.60s; 67.60s; 77.60s; 87.60s; 97.60s; 107.60s; 117.60s; 127.60s; 137.60s; 147.60s; 157.60s">
                   <mpath href="#wire8"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-4">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="105.15s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="7.65s; 17.65s; 27.65s; 37.65s; 47.65s; 57.65s; 67.65s; 77.65s; 87.65s; 97.65s; 107.65s; 117.65s; 127.65s; 137.65s; 147.65s; 157.65s">
                   <mpath href="#wire8"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-5">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="105.20s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="7.70s; 17.70s; 27.70s; 37.70s; 47.70s; 57.70s; 67.70s; 77.70s; 87.70s; 97.70s; 107.70s; 117.70s; 127.70s; 137.70s; 147.70s; 157.70s">
                   <mpath href="#wire8"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-6">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="105.25s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="7.75s; 17.75s; 27.75s; 37.75s; 47.75s; 57.75s; 67.75s; 77.75s; 87.75s; 97.75s; 107.75s; 117.75s; 127.75s; 137.75s; 147.75s; 157.75s">
                   <mpath href="#wire8"/>
                 </animateMotion>
               </circle>
               <circle r="2.5" className="trail-dot trail-dot-7">
-                <animateMotion dur="10s" repeatCount="indefinite" begin="105.30s">
+                <animateMotion dur="5s" repeatCount="indefinite" begin="7.80s; 17.80s; 27.80s; 37.80s; 47.80s; 57.80s; 67.80s; 77.80s; 87.80s; 97.80s; 107.80s; 117.80s; 127.80s; 137.80s; 147.80s; 157.80s">
                   <mpath href="#wire8"/>
                 </animateMotion>
               </circle>
