@@ -489,9 +489,9 @@ p {
 }
 
 .btn-primary {
-  background: var(--gradient-swedish);
+  background: var(--swedish-blue);
   color: white;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary::before {
