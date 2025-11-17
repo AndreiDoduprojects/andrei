@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Code } from 'next/font/google';
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -10,6 +10,17 @@ const firaCode = Fira_Code({
   display: 'swap',
   variable: '--font-fira-code',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: light)', color: '#000000' }
+  ],
+  colorScheme: 'dark',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://andreidodu.se'),
@@ -37,19 +48,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'Andrei Dodu', url: 'https://andreidodu.se' }],
   creator: 'Andrei Dodu',
   publisher: 'Andrei Dodu',
-
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
-
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
-    { media: '(prefers-color-scheme: light)', color: '#000000' }
-  ],
-
-  colorScheme: 'dark',
 
   openGraph: {
     type: 'website',
