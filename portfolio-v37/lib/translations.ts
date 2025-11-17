@@ -8,7 +8,7 @@ export const translations = {
     },
     hero: {
       name: 'Andrei Dodu',
-      title: 'Full-Stack Developer',
+      title: 'Full-Stack Developer & AI Engineer',
       tagline: 'Deep ML expertise and product shipping at the intersection of technology and finance',
       cta: 'Get In Touch',
       viewWork: 'View Work',
@@ -68,7 +68,7 @@ export const translations = {
     },
     hero: {
       name: 'Andrei Dodu',
-      title: 'Full-Stack Utvecklare',
+      title: 'Full-Stack Utvecklare & AI-Ingenjör',
       tagline: 'Djup ML-expertis och produktleverans i skärningspunkten mellan teknologi och finans',
       cta: 'Kontakta Mig',
       viewWork: 'Se Projekt',

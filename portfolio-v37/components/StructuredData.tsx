@@ -5,8 +5,8 @@ export default function StructuredData() {
     name: 'Andrei Dodu',
     url: 'https://andreidodu.se',
     image: 'https://andreidodu.se/profile.jpg',
-    jobTitle: 'Full-Stack Developer',
-    description: 'Full-Stack Developer and Value Investor combining technical expertise with financial acumen',
+    jobTitle: 'Full-Stack Developer & AI Engineer',
+    description: 'Full-Stack Developer, AI Engineer, and Value Investor combining technical expertise with financial acumen',
     worksFor: {
       '@type': 'Organization',
       name: 'Self-Employed'

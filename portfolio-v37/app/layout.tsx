@@ -25,12 +25,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://andreidodu.se'),
   title: {
-    default: 'Andrei Dodu - Full-Stack Developer & Value Investor',
+    default: 'Andrei Dodu - Full-Stack Developer, AI Engineer & Value Investor',
     template: '%s | Andrei Dodu'
   },
-  description: 'Portfolio of Andrei Dodu, a full-stack developer and value investor combining technical expertise with financial acumen. Based in Göteborg, Sweden.',
+  description: 'Portfolio of Andrei Dodu, a full-stack developer, AI engineer, and value investor with deep ML expertise (training, fine-tuning, optimization). Based in Göteborg, Sweden.',
   keywords: [
     'Full-Stack Developer',
+    'AI Engineer',
+    'Machine Learning',
+    'ML Engineer',
     'Value Investor',
     'Next.js',
     'React',
@@ -43,7 +46,10 @@ export const metadata: Metadata = {
     'Web Development',
     'Financial Analysis',
     'Software Engineer',
-    'Ruby on Rails'
+    'Ruby on Rails',
+    'AI/ML',
+    'Model Training',
+    'Fine-tuning'
   ],
   authors: [{ name: 'Andrei Dodu', url: 'https://andreidodu.se' }],
   creator: 'Andrei Dodu',
@@ -55,14 +61,14 @@ export const metadata: Metadata = {
     alternateLocale: ['sv_SE'],
     url: 'https://andreidodu.se',
     siteName: 'Andrei Dodu Portfolio',
-    title: 'Andrei Dodu - Full-Stack Developer & Value Investor',
-    description: 'Portfolio of Andrei Dodu, a full-stack developer and value investor based in Göteborg, Sweden.',
+    title: 'Andrei Dodu - Full-Stack Developer, AI Engineer & Value Investor',
+    description: 'Portfolio of Andrei Dodu, a full-stack developer, AI engineer with deep ML expertise, and value investor based in Göteborg, Sweden.',
     images: [
       {
         url: '/profile.jpg',
         width: 1200,
         height: 1200,
-        alt: 'Andrei Dodu - Full-Stack Developer & Value Investor',
+        alt: 'Andrei Dodu - Full-Stack Developer, AI Engineer & Value Investor',
       }
     ]
   },
@@ -71,8 +77,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@andreidoduse',
     creator: '@andreidoduse',
-    title: 'Andrei Dodu - Full-Stack Developer & Value Investor',
-    description: 'Portfolio of Andrei Dodu, a full-stack developer and value investor based in Göteborg, Sweden.',
+    title: 'Andrei Dodu - Full-Stack Developer, AI Engineer & Value Investor',
+    description: 'Full-stack developer, AI engineer with deep ML expertise, and value investor based in Göteborg, Sweden.',
     images: ['/profile.jpg']
   },
 
